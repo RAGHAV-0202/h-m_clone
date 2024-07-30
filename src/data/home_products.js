@@ -1,4 +1,3 @@
-import React from "react"
 const home_products = [
     {
         "articleCode": "0989253002",
