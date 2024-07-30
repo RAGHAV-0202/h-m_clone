@@ -1,0 +1,171 @@
+
+
+.ProductPageDIV{
+    width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    /* background-color: saddlebrown; */
+    display: flex;
+    flex-direction: row;
+    padding-top: 40px;
+}
+
+.ProductPageleft{
+    width: 65%;
+    height: 100%;
+    min-height: 90vh;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0 10px ;
+}
+.ProductPageleft img{
+    /* height: 768px; */
+    width: 49.5%;
+}
+
+.ProductPageRight{
+    width: 35%;
+    /* background-color: aqua; */
+    height: 100%;
+    min-height: 90vh;
+    padding: 3% 2%
+}
+
+.ProducctPagecolors {
+    padding: 10px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 15px;
+}
+
+.product_page_color_div {
+    width: 30px;
+    height: 30px;
+    /* background-color: rebeccapurple; */
+    border-radius: 50%;
+    display: flex;
+    /* margin:  0 3px; */
+    border: 2px solid rgb(220, 245, 240);
+}
+
+.MRP_TEXT{
+    color: #707070;
+    font-size: 13px ;
+}
+.MRP{
+    padding: 2px 0 15px 0;
+    font-weight: 400;
+    font-size: 19px;
+}
+
+.sizes_div{
+    padding: 20px 0;
+}
+.sizes_div p {
+    font-size: 15px;
+}
+.sizes{
+    padding: 10px 0;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.size{
+    border: 1px solid gainsboro;
+    outline: none;
+    width: 80px;
+    height: 40px;
+    transition: 0.2s all ease;
+}
+.size:hover{
+    background-color: black;
+    color: white;
+    transform: scale(1.09);
+}
+
+.ATC{
+    width: 100%;
+    height: 70px;
+    background-color: black;
+    color: white;
+    margin-bottom: 20px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.infoParagraph{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    align-items: center;
+    padding-top: 7px;
+}
+
+.Guide {
+    width: 100%;
+    padding-top: 20px;
+    font-size: 20px;
+    max-height: 50px;
+    /* Set the default height */
+    overflow: hidden;
+    padding-left: 10px;
+    transition: max-height 0.5s ease-out;
+    /* Apply transition to max-height */
+}
+.Guide h5{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 40px;
+    height: 30px;
+    /* background-color: gold; */
+    transition: 0.5s all ease;
+    margin-bottom: 10px;
+}
+
+.Guide p {
+    font-size: 13px;
+}
+
+.careInstructionP{
+    padding-left: 10px;
+}
+.Guide h6{
+    padding-bottom: 10px;
+}
+.careInstructionP i {
+    padding-right: 10px;
+}
+
+@media (width <= 1280px) {
+    .ProductPageleft img {
+        /* height: 768px; */
+        width: 100%;
+    }
+}
+
+@media (width <= 768px) {
+    .ProductPageDIV{
+        flex-direction: column;
+    }
+    .ProductPageleft{
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-y: scroll;
+    }
+    .ProductPageleft img{
+       min-width: 100vw;
+    }
+    .ProductPageRight{
+        width: 100%;
+    }
+}

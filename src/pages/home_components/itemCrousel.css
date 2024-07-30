@@ -1,0 +1,135 @@
+.items_crousel {
+    width: 100%;
+    /* height: 270px ; */
+    max-width: 960px;
+    /* background-color: lightcoral; */
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+
+    width: 100%;
+    height: 32px;
+    /* background-color: lightgreen; */
+    display: flex;
+    align-items: center;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.cloth_area {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.cloth_area .left {
+    transform: translateX(-50%);
+}
+
+.cloth_area .right {
+    transform: translateX(50%);
+}
+
+.cloth_area button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    /*  */
+    font-size: 20px;
+
+}
+
+.cloth_area button:hover,
+.cloth_area button:active {
+    border: 1px solid black;
+    color: red;
+
+}
+
+.items_area {
+    height: 100%;
+    width: calc(100% - 80px);
+    /* background-color: lawngreen; */
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 10px;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+    /* background-color: rebeccapurple; */
+}
+
+
+.item {
+    /* width: 148px; */
+    height: 238px;
+    /* max-height: 238px; */
+    /* height: 100%; */
+    /* background-color: lightcyan; */
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 148px;
+    transition: 1s all linear;
+    color: black;
+    text-decoration: none;
+}
+
+.item img {
+    /* height: 184px; */
+    background-color: rebeccapurple;
+}
+
+.item p {
+    font-size: 13px;
+}
+
+.smol {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.item span {
+    height: 20px;
+    width: 100%;
+    /* background-color: aqua; */
+}
+
+.colors {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    gap: 4px;
+}
+
+.color_div {
+    width: 8px;
+    height: 8px;
+    /* background-color: rebeccapurple; */
+    border-radius: 50%;
+    display: flex;
+    /* margin:  0 3px; */
+}
+
+@media (width <= 768px) {
+    .cloth_area .left {
+        transform: none;
+    }
+
+    .cloth_area .right {
+        transform: none
+    }
+    .cloth_area{
+        overflow-x: scroll;
+        /* background-color: saddlebrown; */
+    }
+}
