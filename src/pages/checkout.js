@@ -265,7 +265,7 @@ function CartLeft({step , setStep}){
 
 function Centered(){
 
-    const {price} = useParams();
+    const {price} = useParams()  || 50;
 
     console.log(price)
 

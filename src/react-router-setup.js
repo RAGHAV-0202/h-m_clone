@@ -25,15 +25,15 @@ const ReactRouterSetup = ()=>{
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
-                <Route path="/login" element={<LoginPage/>}/>
-                <Route path="/" element={<SignupPage/>}/>
+                <Route path="./login" element={<LoginPage/>}/>
+                <Route path="/signup" element={<SignupPage/>}/>
                 <Route path="/cart" element={<CartPage/>}/>
                 <Route path="/favourites" element={<Favourites/>}/>
                 <Route path="/view_all" element={<ViewAll/>}/>
                 <Route path="/ladies" element={<Ladies/>}/>
                 <Route path="/men" element={<Men/>}/>
                 <Route path="/kids" element={<Kids/>}/>
-                <Route path="baby" element={<Baby/>}/>
+                <Route path="/baby" element={<Baby/>}/>
                 <Route path="/home" element={<Home/>}/>
                 <Route path="/sport" element={<Sport/>}/>
                 <Route path="/sale" element={<Sale/>}/>
