@@ -42,10 +42,8 @@ function ItemCrousel(props){
     }else if(props.size === "largest"){
         div_styles = { 
             height: "max-content" ,
-            // backgroundColor : "red" , 
             maxWidth : "100%",
             padding : "30px 40px",
-            // paddingBottom : "20px",
             width : "100%"
         };
         img_styles = { height: "417px" };

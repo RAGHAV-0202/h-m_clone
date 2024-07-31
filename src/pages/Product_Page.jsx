@@ -115,7 +115,24 @@ function Product() {
         setEndingIndex(startingIndex + 30);
     }, [startingIndex]); // Dependency array means this effect runs when startingIndex changes
 
+    const [size, setSize] = React.useState('largest');
 
+    React.useEffect(() => {
+        const handleResize = () => {
+            setSize(window.innerWidth < 768 ? 'smaller' : 'largest');
+        };
+
+        // Initial check
+        handleResize();
+
+        // Add event listener
+        window.addEventListener('resize', handleResize);
+
+        // Cleanup event listener on component unmount
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    
     return (
         <div className="product_page">
             <Navbar />
@@ -192,15 +209,14 @@ function Product() {
             <ItemCrousel
                 data={accessories}
                 label={"Style with"}
-                size={"largest"}
+                size={size}
             />
             
             <ItemCrousel
                 data={combined_data.slice(startingIndex, endingIndex)}
                 label={"Others also bought"}
-                size={"largest"}
+                size={size}
             />
-
            
 
 
