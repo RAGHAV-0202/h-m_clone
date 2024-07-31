@@ -38,7 +38,7 @@ const ReactRouterSetup = ()=>{
                 <Route path="/sport" element={<Sport/>}/>
                 <Route path="/sale" element={<Sale/>}/>
                 <Route path="/sustainability" element={<Sustainability/>}/>
-                <Route path="./productpage/:num" element={<Product/>}/>
+                <Route path="/productpage/:num" element={<Product/>}/>
                 <Route path="/checkout/:price" element={<Checkout/>}/>
                 <Route path="/ordered_successfully" element={<Ordered/>}/>
                 <Route path="*" element = {<Error/>}/>
