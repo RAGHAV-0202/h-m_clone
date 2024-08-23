@@ -3,7 +3,7 @@ import "../category_components/product.css"
 
 function Product(props){
     return(
-        <a href={`productpage/${props.code}`} className="product_div">
+        <a href={`/productpage/${props._id}`} className="product_div">
             <div className="image_area">
                 <img src={props.src} alt="img"></img>
             </div>

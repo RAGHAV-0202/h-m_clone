@@ -18,12 +18,12 @@ function HomePageContent(){
 
             <Features/>
             <Banner
-                heading_above = {false}
-                heading = {"A red moment"}
+                heading_above = {true}
+                heading = {"Seasonal switch-up"}
                 support_text = {"New arrivals"}
                 position = {"center"}
-                src="https://image.hm.com/content/dam/global_campaigns/season_00/ladies/ws40b/WS40B-3x2.jpg?imwidth=1536"
-                link={"ladies"}
+                src="https://image.hm.com/content/dam/global_campaigns/season_09/ladies/ws30fd/WS30FD-3x2.jpg?imwidth=1536"
+                link={"/store/ladies"}
                 color = {"white"}
                 className = {"red_banner"}
             />
@@ -47,7 +47,7 @@ function HomePageContent(){
                 support_text = {"Up your jeans wardrobe"}
                 position = {"left"}
                 src={"https://image.hm.com/content/dam/global_campaigns/season_00/men/ms30tnd-denim/MS30TND-Denim-roundup-3x2.jpg?imwidth=1536"}
-                link = {"men"}
+                link = {"/store/men"}
                 color = {"white"}
                 className =  {"denim_white"}
             />
@@ -58,7 +58,7 @@ function HomePageContent(){
                 // support_text = {"Up your jeans wardrobe"}
                 position = {"center"}
                 src={"https://image.hm.com/content/dam/global_campaigns/season_00/kids/4140d/4140D-3x2-Denim-young-boys.jpg?imwidth=1536"}
-                link = {"men"}
+                link = {"/store/men"}
                 className =  {"denim_kid"}
             />
             
@@ -70,12 +70,12 @@ function HomePageContent(){
 
             <Banner
                 heading_above = {true}
-                heading = {"The leggings edit"}
-                // support_text = {""}
-                position = {"center"}
-                src= {"https://image.hm.com/content/dam/global_campaigns/season_00/move/7400a/7400A-3x2-the-leggings-edit.jpg?imwidth=1536"}
-                link = {"ladies"}
-                color = {"black"}
+                heading = {"Luxe athleisure"}
+                // support_text = {"Casual apparel with a sporty approach."}
+                position = {"left"}
+                src= {"https://image.hm.com/content/dam/global_campaigns/season_00/men/mp40nae/MP40NAE-athleisure-3x2.jpg?imwidth=1536"}
+                link = {"/store/men"}
+                color = {"white"}
                 className =  {"move"}
             />
 
@@ -85,7 +85,7 @@ function HomePageContent(){
                 support_text = {"Dreamy dress edit"}
                 position = {"center"}
                 src= {"https://image.hm.com/content/dam/regional-local-activities/seu/master-mcf/2024-season-9/ladies/TCL_ladies_whiteddress_3x2.png?imwidth=1536"}
-                link = {"ladies"}
+                link = {"/store/ladies"}
                 color = {"white"}
                 className =  {"dreamy"}
             />
