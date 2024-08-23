@@ -4,6 +4,7 @@ import "./itemCrousel.css"
 
 function ItemCrousel(props){
 
+    console.log(props)
    const [id, setId] = React.useState(nanoid(5, "abc12"));
 
   function scrollLeft() {
@@ -20,7 +21,7 @@ function ItemCrousel(props){
     }
   }
     
-    let div_styles, img_styles, item_styles, cloth_area_styles , left;
+    let div_styles, img_styles, item_styles, cloth_area_styles , left , labelStyle = {};
 
     if (props.size === "smaller") {
         div_styles = { height: "288px"};
@@ -42,10 +43,8 @@ function ItemCrousel(props){
     }else if(props.size === "largest"){
         div_styles = { 
             height: "max-content" ,
-            // backgroundColor : "red" , 
             maxWidth : "100%",
             padding : "30px 40px",
-            // paddingBottom : "20px",
             width : "100%"
         };
         img_styles = { height: "417px" };
@@ -56,6 +55,12 @@ function ItemCrousel(props){
         };
         cloth_area_styles = { height: "470px" };
         left = 500
+
+        labelStyle = {
+            fontSize : "14px" ,
+            fontWeight : "500",
+            padding : "0 0 30px 25px"
+        }
     }
     
     // const id = nanoid();
@@ -69,8 +74,8 @@ function ItemCrousel(props){
 
     return(
         <div style={div_styles} className="items_crousel">
-            <div className="label">
-                <p>{props.label}</p>
+            <div style={labelStyle} className="label">
+                <p className="label_text">{props.label}</p>
             </div>
             <div style={cloth_area_styles} className="cloth_area">
                 <button onClick={()=>scrollLeft(id)} className="left arrow"><i class="fa-light fa-arrow-left"></i></button>
@@ -79,6 +84,7 @@ function ItemCrousel(props){
 
                     {data.slice(0, 30).map((item)=>(
                         <Item
+                            _id = {item._id}
                             src = {item.image[0].src}
                             styles = {img_styles}
                             name  = {item.title}
@@ -100,7 +106,7 @@ function ItemCrousel(props){
 
 function Item(props){
     return (
-        <a href={`/productpage/${props.code}`} style={props.item_styles} className="item">
+        <a href={`/productpage/${props._id}`} style={props.item_styles} className="item">
             <img style={props.styles} src={props.src} alt=""></img>
             <p>{props.name}</p>
             <p className="smol">{props.price}</p>

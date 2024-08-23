@@ -35,12 +35,12 @@ function Navbar(){
             </div>
             <div className="nav_bottom">
 
-                <a href="/ladies">Ladies</a>
-                <a href="/men">Men</a>
-                <a href="/baby">Baby</a>
-                <a href="/kids">Kids</a>
-                <a href="/home">H&M HOME</a>
-                <a href="/sport">Sport</a>
+                <a href="/store/ladies">Ladies</a>
+                <a href="/store/men">Men</a>
+                <a href="/store/baby">Baby</a>
+                <a href="/store/kids">Kids</a>
+                <a href="/store/home">H&M HOME</a>
+                <a href="/store/sport">Sport</a>
                 <a href="/sale">Sale</a>
                 <a href="/sustainability">Sustainability</a>
 

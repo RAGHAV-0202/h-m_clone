@@ -3,6 +3,7 @@ import "./left_panel.css"
 
 function Aside(props){
 
+    // console.log(props)
 
     return (
         <div className="aside">
@@ -29,7 +30,7 @@ function Button(props){
         }else{
             props.setData(props.originalData.filter(item => {
                 // console.log(item.category)
-                console.log(value)
+                // console.log(value)
                 return(item.category.includes(value))
             }))
         }

@@ -33,12 +33,12 @@ function MainContent(){
             <div className="main_content">
                 <div className="Saleleft">
 
-                    <a href="/ladies">Ladies</a>
-                    <a href="/men">Men</a>
-                    <a href="/kids">Kids</a>
-                    <a href="/baby">Baby</a>
-                    <a href="/home">Home</a>
-                    <a href="/sport">Sports</a>
+                    <a href="/store/ladies">Ladies</a>
+                    <a href="/store/men">Men</a>
+                    <a href="/store/kids">Kids</a>
+                    <a href="/store/baby">Baby</a>
+                    <a href="/store/home">Home</a>
+                    <a href="/store/sport">Sports</a>
 
                 </div>
                 <div className="Saleright">
