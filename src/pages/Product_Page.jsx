@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 // import combined_data from "../data/combined_data"
 import "../css/product_page.css"
 import ItemCrousel from "./home_components/ItemCrousel";
+import Loader from "./home_components/loader";
 // import accessories from "../data/accessories";
 
 function MainContentBanner(props) {
@@ -68,7 +69,7 @@ function Product() {
                 let item_Data = await response.json();
                 
 
-                response  = await fetch(`/api/products/data/new-arrival`);
+                response  = await fetch(`https://e-commerce-backend-production-bffa.up.railway.app/api/products/data/new-arrival`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
@@ -186,19 +187,23 @@ function Product() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    if (loading) return <>
-        <Navbar/>
-        <p>Loading...</p>;
-        <Footer/>
-    </>
-    
+        if (loading) return (
+            <>
+                <Navbar />
+                <Loader />
+                <Footer />
+            </>
+        );
 
-    if (error) return <>
-        <Navbar/>
-        <h1>Error loading product.</h1>;
-        <Footer/>
-    </>
-    if (!product) return <p>Product not found.</p>;
+        if (error) return (
+            <>
+                <Navbar />
+                <h1>Error loading product.</h1>
+                <Footer />
+            </>
+        );
+
+        if (!product) return <p>Product not found.</p>;
 
     return (
         <div className="product_page">

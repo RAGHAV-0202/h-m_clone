@@ -15,6 +15,7 @@ import { useParams } from 'react-router-dom';
 
 import "../css/category_products.css"
 import "../css/top_banner.css"
+import Loader from "./home_components/loader";
 // import home_products from "../data/home_products";
 
 function MainContentBanner(props) {
@@ -233,7 +234,10 @@ function MainContent() {
                     <MainContentRight data={data} />
                 </div>
             : 
-                <p style={{ textAlign: "center", padding: "100px" }}>Error 404, Not found</p>
+                <>
+                    <Loader />
+                    <p style={{ textAlign: "center", padding: "100px" }}>Error 404, Not found</p>
+                </>
             }
         </div>
     );
