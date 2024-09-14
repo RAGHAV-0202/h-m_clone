@@ -3,16 +3,44 @@ import '../index.css';
 import "../css/home.css"
 import Navbar from "./navbar";
 import Footer from "./footer";
-import {nanoid} from "nanoid"
-import newArrival from "../data/new_arrival";
-import ladies_products from "../data/ladies_products";
+import sample from "../data/sample";
 
 import Banner from "./home_components/banner";
 import Features from "./home_components/Features"
 import SmolBanner from "./home_components/SmolBanner"
 import ItemCrousel from "./home_components/ItemCrousel";
 
+
+
 function HomePageContent(){
+
+    const [ladies_products , set_ladies_products] = React.useState(sample) ;
+    const [newArrival , setNewArrival] = React.useState(sample)
+
+    React.useEffect(()=>{   
+        const fetchData = async () => {
+            try {
+                let response = await fetch("/api/products/data/new-arrival");
+                let data = await response.json(); 
+                setNewArrival(data.data)
+
+                const randomNumber = Math.floor(Math.random() * 6) + 1;
+                console.log(randomNumber)
+                response = await fetch(`/api/products/data/ladies?limit=30`);
+                data = await response.json()
+                set_ladies_products(data.data)
+
+            } catch (error) {
+                console.error("Error fetching the data:", error);
+            }
+        };
+
+        fetchData();
+        
+    } , [])
+
+    // console.log(ladies_products)
+
     return(
         <div className="home_page_content">
 

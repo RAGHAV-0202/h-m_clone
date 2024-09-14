@@ -4,7 +4,7 @@ import "./itemCrousel.css"
 
 function ItemCrousel(props){
 
-    console.log(props)
+    // console.log(props)
    const [id, setId] = React.useState(nanoid(5, "abc12"));
 
   function scrollLeft() {
