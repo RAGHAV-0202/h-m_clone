@@ -10,6 +10,9 @@ import Features from "./home_components/Features"
 import SmolBanner from "./home_components/SmolBanner"
 import ItemCrousel from "./home_components/ItemCrousel";
 
+let apiBaseUrl = process.env.NODE_ENV === 'production' 
+  ? 'https://e-commerce-backend-production-bffa.up.railway.app' 
+  : '';
 
 
 function HomePageContent(){
@@ -20,13 +23,13 @@ function HomePageContent(){
     React.useEffect(()=>{   
         const fetchData = async () => {
             try {
-                let response = await fetch("/api/products/data/new-arrival");
+                let response = await fetch(`${apiBaseUrl}/api/products/data/new-arrival`);
                 let data = await response.json(); 
                 setNewArrival(data.data)
 
                 const randomNumber = Math.floor(Math.random() * 6) + 1;
                 console.log(randomNumber)
-                response = await fetch(`/api/products/data/ladies?limit=30`);
+                response = await fetch(`${apiBaseUrl}/api/products/data/ladies?limit=30`);
                 data = await response.json()
                 set_ladies_products(data.data)
 
