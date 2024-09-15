@@ -32,7 +32,7 @@ function MainContentBanner(props) {
 
     return (
         <div style={styles} className="MainContentBanner">
-            <p>HM.com / View All / <span style={{ color: "red", fontSize: "15px", paddingLeft: "5px", fontWeight: "600" }} className="red">Kids</span> </p>
+            <p>HM.com / View All / <span style={{ color: "red", fontSize: "15px", paddingLeft: "5px", fontWeight: "600" }} className="red">{props.page}</span> </p>
         </div>
     )
 }
@@ -226,7 +226,9 @@ function MainContent() {
 
     return (
         <div className="page">
-            <MainContentBanner />
+            <MainContentBanner 
+                page = {category}
+            />
 
             { assets.length > 0 ? 
                 <div className="main_content">

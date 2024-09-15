@@ -127,7 +127,7 @@ function HomePageContent(){
                 heading = {"Home: New Arrivals"}
                 support_text = {"Selection of most loved pieces!"}
                 buttons = {
-                    [{href : "home" , text : "Shop now"}]
+                    [{href : "/store/home" , text : "Shop now"}]
                 }
             />
  

@@ -19,6 +19,8 @@ import Product from "./pages/Product_Page";
 import Checkout from "./pages/checkout";
 import Ordered from "./pages/orderd";
 import CommonCategory from "./pages/common_category_page"
+import ForgotPassword from "./pages/forgotPassword";
+import ResetPassword from "./pages/reset-password";
 
 
 const ReactRouterSetup = ()=>{
@@ -27,7 +29,9 @@ const ReactRouterSetup = ()=>{
             
             <Routes>
                 <Route path="/" element={<HomePage/>}/>
-                <Route path="./login" element={<LoginPage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
+                <Route path="/Forgot-password" element={<ForgotPassword/>}/>
+                <Route path="/c03ef05e65659d2a75944d3d72eb71f4f94c6f9b/:token" element={<ResetPassword/>} />
                 <Route path="/signup" element={<SignupPage/>}/>
                 <Route path="/cart" element={<CartPage/>}/>
                 <Route path="/favourites" element={<Favourites/>}/>
