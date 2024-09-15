@@ -49,7 +49,7 @@ function SignUpComponent(){
             }])
         }else{
             try {
-                const response = await axios.post(baseUrl+"api/auth/register" , {firstName , lastName , email , phoneNumber , password})
+                const response = await axios.post(baseUrl+"api/auth/register" , {firstName , lastName , email , phoneNumber , password} , { withCredentials: true })
                 setError([true , response.data.message , style])
                 navigate("/")
             } catch (error) {

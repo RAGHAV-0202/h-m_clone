@@ -43,7 +43,7 @@ function LoginComponent(){
             }])
         }else{
             try {
-                const response = await axios.post(baseUrl+"api/auth/login" , {login , password})
+                const response = await axios.post(baseUrl+"api/auth/login" , {login , password} , { withCredentials: true })
                 setError([true , response.data.message , style])
                 navigate("/")
             } catch (error) {
