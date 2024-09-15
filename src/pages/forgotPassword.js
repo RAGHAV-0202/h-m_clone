@@ -4,7 +4,9 @@ import Footer from "./footer";
 import "../css/login_page.css"
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import baseUrl from "../base_url";
+
 
 
 function MainContentBanner(props) {
@@ -45,7 +47,7 @@ function ForgotComponent(){
             }])
         }else{
             try {
-                const response = await axios.post("api/auth/reset-password-request" , {email})
+                const response = await axios.post(baseUrl+"api/auth/reset-password-request" , {email})
                 setError([true , response.data.message , style])
                 // navigate("/")
                 console.log(response)

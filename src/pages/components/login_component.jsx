@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import baseUrl from "../../base_url";
 
 function LoginComponent(){
     const navigate = useNavigate()
@@ -42,7 +43,7 @@ function LoginComponent(){
             }])
         }else{
             try {
-                const response = await axios.post("api/auth/login" , {login , password})
+                const response = await axios.post(baseUrl+"api/auth/login" , {login , password})
                 setError([true , response.data.message , style])
                 navigate("/")
             } catch (error) {

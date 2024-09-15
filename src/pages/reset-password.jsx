@@ -5,6 +5,7 @@ import "../css/login_page.css"
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import baseUrl from "../base_url";
 
 
 function MainContentBanner(props) {
@@ -44,7 +45,7 @@ function ForgotComponent({token}){
             setError([true, 'Minimum password length is 6', { border: '1px solid red' }]);
         } else {
             try {
-                const response = await axios.post(`/api/auth/reset-password/${token.token}`, { password });
+                const response = await axios.post(`${baseUrl}api/auth/reset-password/${token.token}`, { password });
 
                 let countdown = 3;
                 const intervalId = setInterval(() => {

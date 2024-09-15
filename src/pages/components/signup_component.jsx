@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import React from "react";
+import baseUrl from "../../base_url";
 
 function SignUpComponent(){
     const navigate = useNavigate()
@@ -48,7 +49,7 @@ function SignUpComponent(){
             }])
         }else{
             try {
-                const response = await axios.post("api/auth/register" , {firstName , lastName , email , phoneNumber , password})
+                const response = await axios.post(baseUrl+"api/auth/register" , {firstName , lastName , email , phoneNumber , password})
                 setError([true , response.data.message , style])
                 navigate("/")
             } catch (error) {
