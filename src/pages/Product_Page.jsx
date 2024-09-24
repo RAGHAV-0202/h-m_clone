@@ -9,6 +9,10 @@ import "../css/product_page.css"
 import ItemCrousel from "./home_components/ItemCrousel";
 import Loader from "./home_components/loader";
 // import accessories from "../data/accessories";
+import { useNavigate } from "react-router-dom";
+import baseUrl from "../base_url";
+import axios from "axios";
+
 
 function MainContentBanner(props) {
     const styles = {
@@ -47,6 +51,7 @@ function Color(props) {
 // 51 to 74 , 172 to 184
 
 function Product() {
+    const navigate = useNavigate();
     const { num } = useParams();
 
     // State for product fetched from API
@@ -54,9 +59,23 @@ function Product() {
     const [productForCrousel, setProductForCrousel] = React.useState(null);
     const [loading, setLoading] = React.useState(true);
     const [error, setError] = React.useState(null);
+    
+    const [loggedIn , setLoggedIn] = React.useState(false)
 
-    console.log(product)
-    console.log(productForCrousel)
+    React.useEffect(() => {
+        const checkLoginStatus = async () => {
+            try {
+                const response = await axios.get(`${baseUrl}api/auth/IsLoggedIn` , { withCredentials: true });
+                console.log(response.data); 
+                setLoggedIn(true);
+            } catch (err) {
+                console.error("Error while checking login status:", err.response?.data || err.message);
+            }
+        };
+
+        checkLoginStatus();
+    }, []);
+
 
     // Fetch product data from API
     React.useEffect(() => {
@@ -128,7 +147,25 @@ function Product() {
 
     const [added, setAdded] = React.useState(false);
 
-    function AddtoCart() {
+
+    async function AddtoCart() {
+
+        if(!loggedIn){
+            alert('Please Login first')
+            navigate("/login");
+
+            return;
+        }
+
+        try {
+            const response = await axios.post(`${baseUrl}api/cart/add-to-cart/${product._id}`, {"quantity" : 1} , {withCredentials : true})
+            console.log(response)
+        } catch (error) {
+            console.log("error while adding to cart")
+            console.log(error)
+        }
+
+
         const newItem = {
             code: product.articleCode,
             color: colorRef.current,

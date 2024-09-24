@@ -51,10 +51,7 @@ function LoginComponent(){
                 console.log(error.response.data.message)
                 setError([true , error.response.data.message , style])
             }
-        }
-
-
-            
+        }            
     }
 
 

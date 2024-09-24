@@ -1,11 +1,32 @@
 import React from "react";
 import "../css/navbar.css"
-
-
+import axios from "axios"
+import baseUrl from "../base_url.js"
 
 function Navbar(){
     const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
     const len = cart.length
+
+    const [loggedIn , setLoggedIn] = React.useState(false)
+
+    React.useEffect(() => {
+        const checkLoginStatus = async () => {
+            try {
+                const response = await axios.get(`${baseUrl}api/auth/IsLoggedIn` , { withCredentials: true });
+                console.log(response.data); 
+                setLoggedIn(true);
+            } catch (err) {
+                console.error("Error while checking login status:", err.response?.data || err.message);
+            }
+        };
+
+        checkLoginStatus();
+    }, []);
+
+
+
+
+
     return(
         <div className="navbar">
 
@@ -19,10 +40,18 @@ function Navbar(){
                     <a href="/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq1n8MdAYvQMMDlpTRkvdYosPoxKbmX-4gUw&s" alt="H&M"></img></a> 
                 </div>
                 <div className="nav_top_right">
-                    <a href="/login">
-                        <i class="fa-light fa-user"></i>
-                        <p>Sign in</p>
-                    </a>
+                    { !loggedIn && 
+                        <a href="/login">
+                            <i class="fa-light fa-user"></i>
+                            <p>Sign in</p>
+                        </a>
+                    }
+                    { loggedIn && 
+                        <a href="/profile">
+                            <i class="fa-light fa-user"></i>
+                            <p>Profile</p>
+                        </a>
+                    }
                     <a href="/favourites">
                         <i class="fa-light fa-heart"></i>
                         <p>Favourites</p>

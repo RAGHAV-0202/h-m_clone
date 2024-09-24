@@ -21,6 +21,7 @@ import Ordered from "./pages/orderd";
 import CommonCategory from "./pages/common_category_page"
 import ForgotPassword from "./pages/forgotPassword";
 import ResetPassword from "./pages/reset-password";
+import ProfilePage from "./pages/profile";
 
 
 const ReactRouterSetup = ()=>{
@@ -42,12 +43,13 @@ const ReactRouterSetup = ()=>{
                 {/* <Route path="/baby" element={<Baby/>}/> */}
                 {/* <Route path="/home" element={<Home/>}/> */}
                 {/* <Route path="/sport" element={<Sport/>}/> */}
+                <Route path="/profile" element={<ProfilePage/>}/>
                 <Route path="/sale" element={<Sale/>}/>
                 <Route path="/store/:id" element={<CommonCategory/>}/>
                 <Route path="/sustainability" element={<Sustainability/>}/>
                 <Route path="/productpage/:num" element={<Product/>}/>
                 <Route path="/checkout/:price" element={<Checkout/>}/>
-                <Route path="/ordered_successfully" element={<Ordered/>}/>
+                <Route path="/ordered_successfully" element={<Ordered/>}/>           
                 <Route path="*" element = {<Error/>}/>
             </Routes>
         </Router>

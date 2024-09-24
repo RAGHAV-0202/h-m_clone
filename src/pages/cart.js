@@ -4,9 +4,10 @@ import Navbar from "./navbar";
 import Footer from "./footer";
 import Features from "./home_components/Features";
 import SmolBanner from "./home_components/SmolBanner";
-import "../css/cart.css"
-import combined_data from "../data/combined_data"
-import "../css/top_banner.css"
+import "../css/cart.css";
+import "../css/top_banner.css";
+import axios from "axios";
+import baseUrl from "../base_url";
 
 function MainContentBanner(props) {
     const styles = {
@@ -18,37 +19,37 @@ function MainContentBanner(props) {
         justifyContent: "center",
         fontSize: "12px",
         fontWeight: 500,
-    }
+    };
 
     return (
         <div style={styles} className="MainContentBanner">
             <p>HM.com / View All / <span style={{ color: "red", fontSize: "15px", paddingLeft: "5px", fontWeight: "600" }} className="red">Cart</span> </p>
         </div>
-    )
+    );
 }
 
-
-function CartLeft(props){
-    return(
+function CartLeft(props) {
+    return (
         <div className="cart_info_left">
-            {props.items.map((item)=>(
+            {props.items.map((item) => (
                 <ProductInCart
-                    name = {item.title}
-                    price = {item.price}
-                    img = {item.image[0].src}
-                    articleCode = {item.articleCode}
-                    size = {item.size}
+                    key={item._id}
+                    name={item.title}
+                    price={item.price}
+                    img={item.image}
+                    productId={item.productId}
+                    size={item.size}
                     setCart={props.setCart}
                     setItem={props.setItem}
                     cart={props.cart}
                 />
             ))}
         </div>
-    )
+    );
 }
 
-function CartRight({ totalPrice }){
-    return(
+function CartRight({ totalPrice }) {
+    return (
         <div className="cart_info_right">
             <div className="proceed">
                 <div className="proceed_abv">
@@ -74,77 +75,72 @@ function CartRight({ totalPrice }){
                         {/* Payment icons */}
                     </div>
                     <p className="disclaimer_p">Prices and delivery costs are not confirmed until you've reached the checkout.
-15 days free returns. Read more about return and refund policy.
-Customers would receive an SMS/WhatsApp notifications regarding deliveries on the registered phone number</p>
+                        15 days free returns. Read more about return and refund policy.
+                        Customers would receive an SMS/WhatsApp notification regarding deliveries on the registered phone number.</p>
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-
-function ProductInCart(props){
-    function handleDelete(articleCode) {
-        const updatedCart = props.cart.filter(item => item.code !== articleCode);
-        props.setCart(updatedCart);
+function ProductInCart(props) {
+    async function handleDelete(productId) {
+        try {
+            // Make sure to use DELETE instead of POST
+            const response = await axios.post(`${baseUrl}api/cart/remove/${productId}`,  { withCredentials: true });
+            console.log(response)
+            const updatedCart = props.cart.filter(item => item.productId !== productId);
+            props.setCart(updatedCart);
+        } catch (error) {
+            console.error("Error removing item from cart:", error.response?.data || error.message);
+        }
     }
-    return(
+
+    return (
         <div className="CartProduct">
             <div className="CartProductLeft">
-                <img width={"120px"}  src={props.img} alt=""></img>
+                <img width={"120px"} src={props.img} alt="" />
             </div>
             <div className="CartProductRight">
                 <span className="abcdfe">
                     <p>{props.name}</p>
-                    <button onClick={()=>handleDelete(props.articleCode)}>
-                        <i class="fa-duotone fa-solid fa-trash"></i>
+                    <button onClick={() => handleDelete(props.productId)}>
+                        <i className="fa-duotone fa-solid fa-trash"></i>
                     </button>
                 </span>
-                <p className="price_p">{props.price}</p>
-
-                <p className="smol_p_cart"><span className="fixed_width">Art.no.</span><span className="pad_right">{props.articleCode}</span></p>
-
-
-                <p className="smol_p_cart"><span className="fixed_width">Total: </span> <span className="pad_right">{props.price}</span></p>
-
-               <p className="smol_p_cart"><span className="fixed_width">Size: </span> <span className="pad_right">{props.size}</span></p>
-
+                <p className="price_p">Rs. {props.price}</p>
+                <p className="smol_p_cart"><span className="fixed_width">Art.no.</span><span className="pad_right">{props.productId}</span></p>
+                <p className="smol_p_cart"><span className="fixed_width">Total: </span> <span className="pad_right">Rs. {props.price}</span></p>
+                <p className="smol_p_cart"><span className="fixed_width">Size: </span> <span className="pad_right">{props.size}</span></p>
                 <div className="Cart_buttons_Area">
-                    <button className="Favt"><i class="fa-light fa-heart"></i></button>
-                    <input value={1} type="number" className="quantity"></input>
+                    <button className="Favt"><i className="fa-light fa-heart"></i></button>
+                    <input value={1} type="number" className="quantity" readOnly />
                 </div>
-
-                
             </div>
         </div>
-    )
+    );
 }
 
 function CenteredDiv() {
-    const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
+    const [cart, setCart] = React.useState([]);
     const [items, setItems] = React.useState([]);
 
     React.useEffect(() => {
-        localStorage.setItem("cart", JSON.stringify(cart));
+        async function fetchCart() {
+            try {
+                const response = await axios.get(`${baseUrl}api/cart/get-cart`, { withCredentials: true });
+                const cartData = response.data.data.cart;
+                setCart(cartData);
+                setItems(cartData);  // Items are directly set from the cart data
+            } catch (error) {
+                console.error("Error fetching cart data:", error);
+            }
+        }
 
-        const updatedItems = cart.map((each) => {
-            let product = combined_data.find(p => p.articleCode === each.code);
-            return { ...product, size: each.size };
-        });
+        fetchCart();
+    }, []);
 
-        setItems(updatedItems);
-    }, [cart]);
-
-const parsePrice = (priceString) => {
-    console.log(priceString)
-    const cleanedString = priceString.replace(/[a-zA-Z,.]/g, '');
-    return (parseInt(cleanedString) / 100)
-
-    
-};
-
-const totalPrice = items.reduce((sum, item) => sum + parsePrice(item.price), 0).toFixed(2);
-
+    const totalPrice = items.reduce((sum, item) => sum + item.price, 0).toFixed(2);
 
     return (
         <div className="cart_page">
@@ -157,21 +153,19 @@ const totalPrice = items.reduce((sum, item) => sum + parsePrice(item.price), 0).
                 </div>
             </div>
         </div>
-    )
+    );
 }
 
-
-
-function CartPage(){
-    return(
+function CartPage() {
+    return (
         <div className="home_page">
-            <Navbar/>
-                <MainContentBanner/>
-                <Features/>
-                <CenteredDiv/>
-            <Footer/>
+            <Navbar />
+            <MainContentBanner />
+            <Features />
+            <CenteredDiv />
+            <Footer />
         </div>
-    )
+    );
 }
 
-export default CartPage
+export default CartPage;
