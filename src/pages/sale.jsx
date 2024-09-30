@@ -46,12 +46,12 @@ function MainContent(){
                         <div className="sale_div">
                             <h1>SALE</h1>
                             <div className="links">
-                                <a href="/ladies">Ladies</a>
-                                <a href="/men">Men</a>
-                                <a href="/kids">Kids</a>
-                                <a href="/baby">Baby</a>
-                                <a href="/home">Home</a>
-                                <a href="/sport">Sports</a>
+                                <a href="/store/ladies">Ladies</a>
+                                <a href="/store/men">Men</a>
+                                <a href="/store/kids">Kids</a>
+                                <a href="/store/baby">Baby</a>
+                                <a href="/store/home">Home</a>
+                                <a href="/store/sport">Sports</a>
                             </div>
                         </div>
                         <div className="sale_div2">

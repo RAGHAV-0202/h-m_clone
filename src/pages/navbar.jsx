@@ -4,17 +4,23 @@ import axios from "axios"
 import baseUrl from "../base_url.js"
 
 function Navbar(){
-    const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
-    const len = cart.length
+    // const [cart, setCart] = React.useState(JSON.parse(localStorage.getItem("cart")) || []);
+    // const len = cart.length
 
     const [loggedIn , setLoggedIn] = React.useState(false)
+    const [cartLen , setCartLen] = React.useState(0);
+
+
 
     React.useEffect(() => {
         const checkLoginStatus = async () => {
             try {
-                const response = await axios.get(`${baseUrl}api/auth/IsLoggedIn` , { withCredentials: true });
+                let response = await axios.get(`${baseUrl}api/auth/IsLoggedIn` , { withCredentials: true });
                 console.log(response.data); 
                 setLoggedIn(true);
+
+                response = await axios.get(`${baseUrl}api/cart/get-cart` , { withCredentials: true });
+                setCartLen(response?.data?.data?.cart?.length || 0)
             } catch (err) {
                 console.error("Error while checking login status:", err.response?.data || err.message);
             }
@@ -24,6 +30,9 @@ function Navbar(){
     }, []);
 
 
+    const cartText = React.useMemo(() => {
+        return loggedIn ? `Shopping bag (${cartLen})` : "Shopping bag (0)";
+    }, [loggedIn, cartLen]);
 
 
 
@@ -58,7 +67,8 @@ function Navbar(){
                     </a>
                     <a href="/cart">
                         <i class="fa-light fa-bag-shopping"></i>
-                        <p>Shopping bag ({len})</p>
+                         <p>{cartText}</p>
+                        
                     </a>
                 </div>
             </div>

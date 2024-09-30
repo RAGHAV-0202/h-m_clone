@@ -64,7 +64,7 @@ function HomePageContent(){
                 heading = {"The T-shirt shop starting $399"}
                 support_text = {"From bold graphics to basics: new trending tees for a fashionable update"}
                 buttons = {
-                    [{href : "ladies" , text : "Ladies"} , {href : "men" , text : "Men"}  , {href : "kids" , text : "Kids & baby"}]
+                    [{href : "store/ladies" , text : "Ladies"} , {href : "store/men" , text : "Men"}  , {href : "store/kids" , text : "Kids & baby"}]
                 }
             />
             <ItemCrousel
