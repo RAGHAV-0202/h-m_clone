@@ -8,6 +8,7 @@ import "../css/cart.css";
 import "../css/top_banner.css";
 import axios from "axios";
 import baseUrl from "../base_url";
+import Loader from "./home_components/loader";
 
 function MainContentBanner(props) {
     const styles = {
@@ -42,6 +43,7 @@ function CartLeft(props) {
                     setCart={props.setCart}
                     setItem={props.setItem}
                     cart={props.cart}
+                    quantity = {item.quantity}
                 />
             ))}
         </div>
@@ -83,18 +85,24 @@ function CartRight({ totalPrice }) {
     );
 }
 
-function ProductInCart(props) {
-    async function handleDelete(productId) {
-        try {
-            // Make sure to use DELETE instead of POST
-            const response = await axios.post(`${baseUrl}api/cart/remove/${productId}`,  { withCredentials: true });
-            console.log(response)
-            const updatedCart = props.cart.filter(item => item.productId !== productId);
-            props.setCart(updatedCart);
-        } catch (error) {
-            console.error("Error removing item from cart:", error.response?.data || error.message);
+    function ProductInCart(props) {
+
+        const [deleteLoading , setDeleteLoading] = React.useState(false)
+
+        async function handleDelete(productId) {
+            setDeleteLoading(true)
+            console.log(productId);
+            try {
+                const response = await axios.post(`${baseUrl}api/cart/remove/${productId}`, {}, { withCredentials: true });
+                console.log(response);
+
+                const updatedCart = props.cart.filter(item => item.productId !== productId);
+                props.setCart(updatedCart);
+                props.setItem(updatedCart);
+            } catch (error) {
+                console.error("Error removing item from cart:", error.response?.data || error.message);
+            }
         }
-    }
 
     return (
         <div className="CartProduct">
@@ -105,7 +113,8 @@ function ProductInCart(props) {
                 <span className="abcdfe">
                     <p>{props.name}</p>
                     <button onClick={() => handleDelete(props.productId)}>
-                        <i className="fa-duotone fa-solid fa-trash"></i>
+                        {!deleteLoading && <i className="fa-duotone fa-solid fa-trash"></i>}
+                        { deleteLoading &&<div className="Loading_Area"> <Loader/></div>}
                     </button>
                 </span>
                 <p className="price_p">Rs. {props.price}</p>
@@ -114,7 +123,7 @@ function ProductInCart(props) {
                 <p className="smol_p_cart"><span className="fixed_width">Size: </span> <span className="pad_right">{props.size}</span></p>
                 <div className="Cart_buttons_Area">
                     <button className="Favt"><i className="fa-light fa-heart"></i></button>
-                    <input value={1} type="number" className="quantity" readOnly />
+                    <input value={props.quantity} type="number" className="quantity" readOnly />
                 </div>
             </div>
         </div>

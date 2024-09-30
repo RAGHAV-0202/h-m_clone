@@ -146,9 +146,11 @@ function Product() {
     }, [cart]);
 
     const [added, setAdded] = React.useState(false);
+    const [cartLoading , setCartLoading] = React.useState(false)
 
 
     async function AddtoCart() {
+        setCartLoading(true)
 
         if(!loggedIn){
             alert('Please Login first')
@@ -165,28 +167,28 @@ function Product() {
             console.log(error)
         }
 
+        // const newItem = {
+        //     code: product.articleCode,
+        //     color: colorRef.current,
+        //     size: sizeRef.current
+        // };
 
-        const newItem = {
-            code: product.articleCode,
-            color: colorRef.current,
-            size: sizeRef.current
-        };
+        // // Check if the item is already in the cart
+        // const isItemInCart = cart.some(item =>
+        //     item.code === newItem.code &&
+        //     item.color === newItem.color &&
+        //     item.size === newItem.size
+        // );
 
-        // Check if the item is already in the cart
-        const isItemInCart = cart.some(item =>
-            item.code === newItem.code &&
-            item.color === newItem.color &&
-            item.size === newItem.size
-        );
+        // if (isItemInCart) {
+        //     alert("Item is already in the cart.");
+        //     return;
+        // }
 
-        if (isItemInCart) {
-            alert("Item is already in the cart.");
-            return;
-        }
-
-        setCart(prev => [...prev, newItem]);
+        // setCart(prev => [...prev, newItem]);
         alert("Added to cart");
         setAdded(true);
+        setCartLoading(false)
     }
 
     const [extend, setExtended] = React.useState(false);
@@ -195,18 +197,6 @@ function Product() {
         setExtended(prev => !prev);
     }
 
-    // const [startingIndex, setStartingIndex] = React.useState(900);
-    // const [endingIndex, setEndingIndex] = React.useState(930);
-
-    // React.useEffect(() => {
-    //     const randomNumber = Math.floor(Math.random() * 601);
-    //     setStartingIndex(randomNumber || 900);
-    // }, []); 
-
-    // React.useEffect(() => {
-    //     setEndingIndex(startingIndex + 30);
-    // }, [startingIndex]); 
-
     const [size, setSize] = React.useState('largest');
 
     React.useEffect(() => {
@@ -214,13 +204,9 @@ function Product() {
             setSize(window.innerWidth < 768 ? 'smaller' : 'largest');
         };
 
-        // Initial check
         handleResize();
-
-        // Add event listener
         window.addEventListener('resize', handleResize);
 
-        // Cleanup event listener on component unmount
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
@@ -293,7 +279,12 @@ function Product() {
                         </div>
                     </div>
 
-                    {!added && <button className="ATC" onClick={AddtoCart}>Add to Cart</button>}
+                    {!added &&   
+                        <>
+                            {!cartLoading &&<button className="ATC" onClick={AddtoCart}>Add to Cart</button>}
+                            {cartLoading && <div className="ATC"><Loader/></div> }                   
+                         </>                          
+                    }
                     {added && <a className="ATC" href="/cart">Go to Cart</a>}
 
                     <p className="infoParagraph"><i className="fa-duotone fa-solid fa-store"></i> Not available in stores</p>
