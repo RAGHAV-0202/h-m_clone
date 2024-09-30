@@ -4,7 +4,11 @@ import Footer from "./footer";
 import Navbar from "./navbar";
 import "../css/checkout.css";
 import "../css/cart.css"
+import baseUrl from "../base_url";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import Loader from "./home_components/loader";
 
 function MainContentBanner(props) {
     const styles = {
@@ -26,13 +30,50 @@ function MainContentBanner(props) {
 }
 
 function CartRight({step , price}){
+    const navigate = useNavigate()
+
+    const [value , setValue] = React.useState(price)
+
+    React.useEffect(() => {
+        const checkCart = async () => {
+            try {
+                let response = await axios.get(`${baseUrl}api/cart/get-cart` , { withCredentials: true });
+                console.log(response?.data?.data?.value); 
+                setValue(response?.data?.data?.value)
+            } catch (err) {
+                console.error("Error while checking login status:", err.response?.data || err.message);
+            }
+        };
+
+        checkCart();
+    }, []);
+    const [OrderLoading, setOrderLoading] = React.useState(false)
+
+    async function handleOrder(){
+        setOrderLoading(true)
+        try{
+            const response = await axios.post(`${baseUrl}api/orders/place` , {} , {withCredentials : true})
+            console.log("Ordered 🎉🎉")
+            console.log(response)
+
+            navigate("/ordered_successfully")
+        }catch(err){
+            console.log("Error while ordering")
+            console.log(err)
+            setOrderLoading(false)
+        }
+        // console.log("ordered")
+
+    }
+
+
     return(
         <div className="cart_info_right rightCheckout">
             <div className="proceed">
                 <div className="proceed_abv">
                     <span>
                         <p>Order value</p>
-                        <p>Rs. {price}</p>
+                        <p>Rs. {value}</p>
                     </span>
                     <span>
                         <p>Delivery</p>
@@ -42,10 +83,15 @@ function CartRight({step , price}){
                 <div className="proceed_btm">
                     <span>
                         <p>Total</p>
-                        <p>Rs. {price}</p>
+                        <p>Rs. {value}</p>
                     </span>
-                    {step < 4 && <a href={`/checkout/${price}`}> Continue to checkout </a>}
-                    {step === 4 && <a href={`/ordered_successfully`}> Order Now </a>}
+                    {step < 4 && <a href={`/checkout/${value}`}> Continue to checkout </a>}
+                    {step === 4 && 
+                        <>
+                            {!OrderLoading && <button onClick={handleOrder}> Order Now </button>}
+                            {OrderLoading && <div className="ATC"><Loader/></div> }   
+                        </>
+                    }
                 </div>
                 <div className="checkout_info">
                     <p>We accept</p>
@@ -267,7 +313,7 @@ function Centered(){
 
     const {price} = useParams()  || 50;
 
-    console.log(price)
+    // console.log(price)
 
     const [step , setStep] = React.useState(1);
 
@@ -285,6 +331,23 @@ function Centered(){
 }
 
 function Checkout(){
+    const navigate = useNavigate()
+
+    React.useEffect(() => {
+        const checkLoginStatus = async () => {
+            try {
+                const response = await axios.get(`${baseUrl}api/auth/IsLoggedIn` , { withCredentials: true });
+                console.log(response.data); 
+            } catch (err) {
+                console.error("Error while checking login status:", err.response?.data || err.message);
+                alert('Please Login first')
+                navigate("/login");
+            }
+        };
+
+        checkLoginStatus();
+    }, []);
+
     return(
         <div className="error_page">
             <Navbar/>

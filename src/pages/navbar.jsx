@@ -16,7 +16,7 @@ function Navbar(){
         const checkLoginStatus = async () => {
             try {
                 let response = await axios.get(`${baseUrl}api/auth/IsLoggedIn` , { withCredentials: true });
-                console.log(response.data); 
+                // console.log(response.data); 
                 setLoggedIn(true);
 
                 response = await axios.get(`${baseUrl}api/cart/get-cart` , { withCredentials: true });

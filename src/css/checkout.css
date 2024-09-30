@@ -73,3 +73,15 @@ input{
     justify-content: center;
 }
 
+
+.proceed_btm button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+.proceed_btm button:hover{
+    background-color: rgba(0, 0, 0, 0.756);
+}
+.proceed_btm button:active{
+    background-color: rgba(0, 69, 0, 0.433);
+}

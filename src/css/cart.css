@@ -197,7 +197,7 @@
     columns: #707070;
     font-size: 13px;
 }
-.proceed_btm a{
+.proceed_btm a , .proceed_btm button{
     margin-top: 20px;
     padding: 15px;
     background-color: black;
