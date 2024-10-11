@@ -176,5 +176,5 @@ function CartPage() {
         </div>
     );
 }
+export {CartPage , ProductInCart};
 
-export default CartPage;

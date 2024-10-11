@@ -4,7 +4,7 @@ import LoginPage from "./pages/login";
 import SignupPage from "./pages/signup";
 import HomePage from "./pages/homePage";
 import Error from "./pages/error"
-import CartPage from "./pages/cart";
+import {CartPage} from "./pages/cart";
 import ViewAll from "./pages/viewl_all"
 import Favourites from "./pages/favourite";
 // import Men from "./pages/men"
@@ -22,6 +22,7 @@ import CommonCategory from "./pages/common_category_page"
 import ForgotPassword from "./pages/forgotPassword";
 import ResetPassword from "./pages/reset-password";
 import ProfilePage from "./pages/profile";
+import OrderPage from "./pages/orders_page";
 
 
 const ReactRouterSetup = ()=>{
@@ -50,6 +51,7 @@ const ReactRouterSetup = ()=>{
                 <Route path="/productpage/:num" element={<Product/>}/>
                 <Route path="/checkout/:price" element={<Checkout/>}/>
                 <Route path="/ordered_successfully" element={<Ordered/>}/>           
+                <Route path="/orders" element={<OrderPage/>}/>  
                 <Route path="*" element = {<Error/>}/>
             </Routes>
         </Router>

@@ -1,0 +1,223 @@
+
+.profilePageDiv{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.profilePageCenterDiv{
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    /* background-color: rebeccapurple; */
+    min-height: 100vh;
+    flex-direction: column;
+    height: auto;
+    padding: 40px 25px;
+}
+.SectionOne{
+    display: flex;
+    width: 100%;
+    height: 375px;
+    flex-direction: row;
+    /* background-color: orange; */
+    justify-content: space-between;
+    
+}
+
+.UserProfileArea{
+    width: 375px;
+    height: 375px;
+    /* background-color: lightcoral; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.userProfile{
+    width: 375px;
+    height: 375px;
+    background-image: url("https://www2.hm.com/content/dam/member%20card%20NS%20DK.png");
+    background-position: center;
+    background-size: cover;
+    background-color: rebeccapurple;
+    background-repeat: no-repeat;       
+    position: relative;
+}
+.welcomeUser{
+    position: absolute;
+    width: 90%;
+    /* height: 165px; */
+    background-color: #dfd6c5;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    height: auto;
+    padding: 10px;
+}
+.welcomeUser p{
+    font-size: 16px;
+    font-weight: 500;
+}
+.userName{
+    color: rgba(255, 0, 0, 0.704);
+}
+.smallerText{
+    font-size: 10px;
+}
+
+
+.UserOffers{
+    width: calc(100% - 420px);
+    /* background-color: yellow; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 50px;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+}
+.UserOffers h4{
+    font-weight: 600;
+    font-size: 20px;
+    padding-bottom: 50px;
+}
+.offers_area{
+    width: 80%; 
+    height: 250px;
+    /* background-color: pink; */
+    justify-content: space-evenly;
+    align-items: center;
+}
+.offer{
+    width: 150px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    /* background-color: rebeccapurple; */
+    justify-content: space-between;
+    border: 1px solid gainsboro;
+    /* box-shadow: 4px 2px 5px -2px black; */
+}
+.offer_img{
+    width: 100%;
+    height: 45%;
+    /* background-color: salmon; */
+}
+.offer_details{
+    width: 100%;
+    height: 50%;
+    /* background-color: yellow; */
+    padding-top: 15px;
+    background-color: white;
+    padding-left: 7px;
+}
+.offer_details h5{
+    font-size: 13px;
+    font-size: 500;
+    padding-bottom: 5px;
+}
+
+.offer_details p {
+    font-size: 11px;
+    color:  #707070;
+}
+
+.SectionTwo{
+    display: flex;
+    /* background-color: yellow; */
+    width: 100%;
+    min-height: 50vh;
+    padding-top: 40px;
+}
+.SettingsOptions{
+    width: 40%;
+    /* background-color: lightblue; */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    max-width: 374px;
+}
+.settingsSetting{
+    display: flex;
+    flex-direction: row;
+    width: 374px;
+    height: 56px;
+    padding: 16px;
+}
+
+.settingsSetting:nth-child(odd) {
+    background-color: white;
+    /* Light gray */
+}
+
+.settingsSetting p {
+    width: calc(100% - 80px);
+    font-weight: 500;
+}
+
+.settingsSetting i{
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.SettingsArea{
+    width: 100%;
+    display: flex;
+    /* background-color: rebeccapurple; */
+    height: 100%;
+    min-height: 100vh;
+    padding-left: 20px;
+}
+
+.SettingAreaDiv{
+    width: 100%;
+    min-height: 80vh;
+    height: 100%;
+    padding: 0 20px;
+    /* background-color: rebeccapurple; */
+}
+
+.OrdersDiv {
+    /* background-color: orange; */
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    gap: 20px;
+}
+.OrdersDiv a , .OrdersDiv button {
+    width: calc(100% - 40px);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 0 20px;
+    text-decoration: none;
+    color: black;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+}
+.OrdersDiv i {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.AccountSettingsDiv{
+    background-color: lightgreen;
+}
+
+.LogOutDiv {
+    background-color: lightblue;
+}
+
+

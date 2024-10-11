@@ -1,0 +1,145 @@
+.OrdersPage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.ordersCenterPage{
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    width: 900px;
+    /* background-color: saddlebrown; */
+}
+.ordersCenterPage h1{
+    padding-bottom: 20px;
+}
+.OrdersDiv {
+    /* background-color: orange; */
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+    gap: 20px;
+}
+
+.Order_component {
+    width: 100%;
+    height: 150px;
+    /* background-color: lightcoral; */
+}
+
+.Order_div_each{
+    display: flex;
+    flex-direction: column;
+    padding: 0  ;
+}
+.order_top{
+    width: 100%;
+    height: 40px;
+    background-color: gainsboro;
+    display: flex;
+    align-items: center;
+    padding: 4px 24px;
+    justify-content: space-between;
+}
+.order_top span{
+    display: flex;
+    flex-direction: row;
+    font-size: 12px;
+    font-weight: 500;
+}
+.order_top span span{
+    display: flex;
+    flex-direction: column;
+    /* background-color: rebeccapurple; */
+    margin-right: 25px;
+}
+.order_bottom{
+    width: 100%;
+    height: calc(100% - 40px);
+    padding: 12px 24px;
+    /* background-color: lightcoral; */
+    display: flex;
+    flex-direction: row;
+    min-height: 210px;
+    overflow: hidden;
+}
+.bolder{
+    font-weight: 600;
+    font-size: 15px;
+}
+.order_bottom_left{
+    width: 30%;
+    max-width: 150px;
+    height: 100%;
+    display: flex;
+    /* background-color: yellow; */
+}
+
+.image_area_for_order{
+    height: 190px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    /* background-color: rebeccapurple; */
+}
+.image_area_for_order a {
+    width: 100%;
+    height: 100%;
+}
+.order_bottom_left a img{
+    height: 100%;
+    padding-right: 15px;
+}
+.order_bottom_right{
+
+    padding-left: 25px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    /* background-color: lightseagreen; */
+}
+.order_bottom_right h4 {
+    font-size: 18px;
+    padding-bottom: 5px;
+}
+.order_bottom_right h6{
+    font-size: 16px ;
+    font-weight: 400;
+}
+.size18{
+    font-size: 18px;
+}
+.details{
+    width: 250px;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: palevioletred;
+    font-size: 12px;
+    padding: 12px 0;
+}
+
+.No_Orders{
+    padding: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.No_Orders> a{
+    width: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    padding: 20px;
+    color: #222222;
+    margin-top: 15px;
+    font-weight: 700;
+    background-color: gainsboro;
+}
