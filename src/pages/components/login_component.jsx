@@ -3,8 +3,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import baseUrl from "../../base_url";
+import Loader from "../home_components/loader";
 
 function LoginComponent(){
+    const [loginLoading , setLoginLoading] = React.useState(false);
     const navigate = useNavigate()
 
     const [showPassword , setShowPassword] = React.useState(false)   
@@ -30,6 +32,7 @@ function LoginComponent(){
     const passwordContainer = React.useRef(null)
 
     async function handleLogin(){
+        setLoginLoading(true)
         const login = emailContainer.current.value
         const password = passwordContainer.current.value
         
@@ -37,16 +40,20 @@ function LoginComponent(){
             setError([true , "Invalid Email" , {
             border : "1px solid red"
             }])
+            setLoginLoading(false)
         }else if(password.length < 6){
             setError([true , "Minimum Password Length is 6" , {
             border : "1px solid red"
             }])
+            setLoginLoading(false)
         }else{
             try {
+                setLoginLoading(false)
                 const response = await axios.post(baseUrl+"api/auth/login" , {login , password} , { withCredentials: true })
                 setError([true , response.data.message , style])
                 navigate("/")
             } catch (error) {
+                setLoginLoading(false)
                 console.log("error while logging in")
                 console.log(error.response.data.message)
                 setError([true , error.response.data.message , style])
@@ -54,11 +61,13 @@ function LoginComponent(){
         }            
     }
 
-
+    
 
     function handlePasswordDisplay(){
         setShowPassword(prev=>!prev)
     }
+
+    
 
     return(
         <div className="LoginComponent">
@@ -97,7 +106,13 @@ function LoginComponent(){
                     </div>
                 }
                 <div className="segment row space-between">
-                    <button onClick={handleLogin} className="sign-in-btn" >Sign in</button>
+                    {
+                        <>
+                            {!loginLoading && <button onClick={handleLogin} className="sign-in-btn" >Sign in</button>}
+                            {loginLoading && <button className="sign-in-btn"><Loader/></button> }  
+                        </>
+                        
+                    }
                 </div>
 
             </div>

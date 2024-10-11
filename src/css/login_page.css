@@ -102,6 +102,9 @@
     font-weight: 600;
     outline: none;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .sign-in-btn:hover{
     background-color: #222222cc;
