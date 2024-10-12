@@ -17,11 +17,15 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
 }
 .centedDivCart h1{
     font-size: 36px;
     font-weight: 600;
+    position: absolute;
+    top: 0;
 }
+
 .Cart_info{
     display: flex;
     flex-direction: row;
