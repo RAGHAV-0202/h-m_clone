@@ -220,4 +220,52 @@
     background-color: lightblue;
 }
 
+@media screen and (width < 768px) {
+    .SectionOne{
+        flex-direction: column;
+        height: auto;
+        max-height: auto;
+    }
+    .UserOffers{
+        display: none;
+    }
+    .profilePageCenterDiv{
+        padding: 0;
+    }
+    .UserProfileArea{
+        min-width: 100%;
+    }
+    .userProfile{
+        background-size: cover;
+        width: 100%;
+        /* max-width: 100%; */
+        min-width: 100%;
+    }
+}
 
+@media screen and (width < 768px) {
+    .settingsSetting {
+        width: 250px !important;
+    }
+}
+
+@media screen and (width < 530px) {
+    .SectionTwo {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .SettingsArea {
+        padding-top: 50px;
+        min-height: auto;
+    }
+
+    .SettingAreaDiv {
+        min-height: auto;
+    }
+    .settingsSetting {
+        width: auto !important;
+        min-width: 300px;
+    }
+
+}

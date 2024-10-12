@@ -105,7 +105,7 @@ function Logout(){
     async function handleLogout(){
         try{
             const response = await axios.post(`${baseUrl}api/auth/logout` , {} , {withCredentials : true});
-            console.log(response)
+            // console.log(response)
 
             Navigate("/")
         }catch(error){
@@ -198,7 +198,7 @@ function ProfilePage(){
 
     } , [])
 
-    console.log(userData)
+    // console.log(userData)
 
 
 
