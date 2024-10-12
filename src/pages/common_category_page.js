@@ -159,7 +159,7 @@ function MainContentRight({data , setData}){
                 <Settings/>
 
                 <div className="product_div_area">
-                    {data.slice(0,number).map((item)=>(
+                    {data.reverse().slice(0,number).map((item)=>(
                         <Product
                             _id = {item._id}
                             src = {item.image[0].src}

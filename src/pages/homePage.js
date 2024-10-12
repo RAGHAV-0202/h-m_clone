@@ -48,12 +48,22 @@ function HomePageContent(){
         <div className="home_page_content">
 
             <Features/>
-            <Banner
+            {/* <Banner
                 heading_above = {true}
                 heading = {"Seasonal switch-up"}
                 support_text = {"New arrivals"}
                 position = {"center"}
                 src="https://image.hm.com/content/dam/global_campaigns/season_09/ladies/ws30fd/WS30FD-3x2.jpg?imwidth=1536"
+                link={"/store/ladies"}
+                color = {"white"}
+                className = {"red_banner"}
+            /> */}
+            <Banner
+                heading_above = {true}
+                heading = {"The 2024 Festive Edit"}
+                support_text = {"An exclusive holiday edit"}
+                position = {"center"}
+                src="https://image.hm.com/content/dam/hm/TOOLBOX/PRE_SEASON/2024/diwali-festival-new-set/IN_HM_teaser_6030_103_367_3x2%20_620x1080.jpg.jpg?imwidth=1536"
                 link={"/store/ladies"}
                 color = {"white"}
                 className = {"red_banner"}

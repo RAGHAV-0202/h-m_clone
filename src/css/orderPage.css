@@ -34,6 +34,8 @@
     display: flex;
     flex-direction: column;
     padding: 0  ;
+    height: 500px;
+    /* background-color: yellow; */
 }
 .order_top{
     width: 100%;
@@ -58,7 +60,8 @@
 }
 .order_bottom{
     width: 100%;
-    height: calc(100% - 40px);
+    min-height: calc(100% - 40px);
+    height: auto;
     padding: 12px 24px;
     /* background-color: lightcoral; */
     display: flex;
@@ -142,4 +145,9 @@
     margin-top: 15px;
     font-weight: 700;
     background-color: gainsboro;
+}
+
+.Order_div_each{
+    height: auto;
+    max-height: none;
 }

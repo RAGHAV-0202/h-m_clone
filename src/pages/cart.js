@@ -158,18 +158,6 @@ function CenteredDiv() {
         <div className="cart_page">
             <div className="centedDivCart">
                 <h1>Shopping bag</h1>
-                {
-                    !loading &&
-                    <span className="No_Orders">
-                        <h3>
-                            We're Sorry
-                            <br></br>
-                        </h3>
-                        <p>When you have added something to the cart you'll find it here.</p>
-                        <Link to="/">Continue Shopping</Link>               
-                    </span>
-
-                }
                 { ! loading && 
                     <div className="Cart_info">
                         {items.length >= 1 && <CartLeft items={items} setItem={setItems} setCart={setCart} cart={cart} />}

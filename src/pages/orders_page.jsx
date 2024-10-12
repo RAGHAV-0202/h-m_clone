@@ -8,32 +8,12 @@ import Loader from "./home_components/loader";
 import "../css/orderPage.css"
 import { Link } from "react-router-dom";
 
-
-function ProductOrdered(props) {
-    return (
-        <div className="CartProduct Order_div_each">
-            <div className="order_top">
-                <span>
-                    <span>
-                        <p className="bolder">Total</p>
-                        <p>{props.price * props.quantity}</p>
-                    </span>
-                    <span>
-                        <p className="bolder">Order Status</p>
-                        <p>{props.status}</p>
-                    </span>                    
-                </span>
-                <span>
-                    <span>
-                        <p className="bolder">Order ID</p>
-                        <p>{props._id}</p> 
-                    </span>
-                </span>
-            </div>
+function ParticularOrder(props){
+    return(
             <div className="order_bottom">
                 <div className="order_bottom_left">
                     <div className="image_area_for_order">
-                        <Link to={`productpage/${props.productId}`}> <img src={props.img} alt="product"></img></Link>
+                        <Link to={`/productpage/${props.productId}`}> <img src={props.img} alt="product"></img></Link>
                     </div>
                 </div>
                 <div className="order_bottom_right">
@@ -47,6 +27,47 @@ function ProductOrdered(props) {
                     </div>
                 </div>
             </div>
+    )
+}
+
+
+function ProductOrdered(props) {
+    return (
+        <div className="CartProduct Order_div_each">
+            <div className="order_top">
+                <span>
+                    <span>
+                        <p className="bolder">Total</p>
+                        <p>{props.total}</p>
+                    </span>
+                    <span>
+                        <p className="bolder">Order Status</p>
+                        <p>{props.status}</p>
+                    </span>                    
+                </span>
+                <span>
+                    <span>
+                        <p className="bolder">Order ID</p>
+                        <p>{props._id}</p> 
+                    </span>
+                </span>
+            </div>
+            {
+               props.order.cart.map((item) => (
+                    <ParticularOrder
+                    key={item._id}
+                    name={item.title}
+                    price={item.price}
+                    img={item.image}
+                    productId={item.productId}
+                    size={item.size}
+                    quantity={item.quantity}
+                    status={props.status} // Pass order status here
+                    _id = {props._id}
+                    total = {props.totalAmount}
+                    />
+                ))
+                }
         </div>
     );
 }
@@ -60,19 +81,12 @@ function Orders({orders}){
         <div className="SettingAreaDiv OrdersDiv">
             {
                 orders.reverse().map((order) => (
-                order.cart.map((item) => (
                     <ProductOrdered
-                    key={item._id}
-                    name={item.title}
-                    price={item.price}
-                    img={item.image}
-                    productId={item.productId}
-                    size={item.size}
-                    quantity={item.quantity}
-                    status={order.status} // Pass order status here
-                    _id = {order._id}
+                        order = {order}
+                        status={order.status} // Pass order status here
+                        _id = {order._id}
+                        total = {order.totalAmount}
                     />
-                ))
                 ))
             }
         </div>
