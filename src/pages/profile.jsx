@@ -92,10 +92,37 @@ function Orders(){
         </div>
     )
 }
-function AccountSettings(){
+function AccountSettings({userData}){
+
     return(
         <div className="SettingAreaDiv AccountSettingsDiv">
+            <h2>Account Settings</h2>
+            <p>You can manage your account and subscriptions here</p>
+            <div className="account_settings_user_info">
+                <h4>My details</h4>
 
+                <span>
+                    <p>My email</p>
+                    <p className="userData">{userData?.email}</p>                    
+                </span>
+
+                <span>
+                    <p>First Name</p>
+                    <p className="userData">{userData?.firstName}</p>                    
+                </span>
+    
+                <span>
+                    <p>Last Name</p>
+                    <p className="userData">{userData?.lastName}</p>                        
+                </span>
+
+                <span>
+                    <p>Phone Number</p>
+                    <p className="userData">{userData?.phoneNumber}</p>                       
+                </span>
+
+
+            </div>
         </div>
     )
 }
@@ -126,8 +153,6 @@ function Logout(){
 function SectionTwo({userData}){
     const [step , setStep ] = React.useState(null)
 
-    // console.log(orders)
-
     return(
         <div className="SectionTwo">
             <div className="SettingsOptions">
@@ -143,6 +168,7 @@ function SectionTwo({userData}){
                     iconClass = "fa-light fa-gear"
                     step = {1}
                     setStep = {setStep}
+                    userData = {userData}
                     
                 />
                 <SettingOption
@@ -155,7 +181,9 @@ function SectionTwo({userData}){
             </div>
             <div className="SettingsArea">
                 {step === 0 &&<Orders/>}
-                {step === 1 &&<AccountSettings/>}
+                {step === 1 &&<AccountSettings
+                    userData={userData}
+                />}
                 {step === 2 &&<Logout/>}
             </div>
         </div>
