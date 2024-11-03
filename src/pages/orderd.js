@@ -8,7 +8,7 @@ function Ordered(){
         <div className="error_page">
             <Navbar/>
             <p style={{ textAlign : "center" , padding : "100px"}}>Ordered Successfully <br></br>Thankyou for shopping with us<br></br>
-            Special thanks to Raghav for sponsoring this order</p>
+            </p>
             <Footer/>
         </div>
     )

@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Loader from "./home_components/loader";
+import { Navigate } from "react-router-dom";
 
 function MainContentBanner(props) {
     const styles = {
@@ -29,45 +30,93 @@ function MainContentBanner(props) {
     )
 }
 
-function CartRight({step , price}){
-    const navigate = useNavigate()
+function CartRight({ step, price }) {
+    const navigate = useNavigate();
 
-    const [value , setValue] = React.useState(price)
+    const [value, setValue] = React.useState(price);
+    const [orderLoading, setOrderLoading] = React.useState(false);
 
     React.useEffect(() => {
         const checkCart = async () => {
             try {
-                let response = await axios.get(`${baseUrl}api/cart/get-cart` , { withCredentials: true });
-                console.log(response?.data?.data?.value); 
-                setValue(response?.data?.data?.value)
+                const response = await axios.get(`${baseUrl}api/cart/get-cart`, { withCredentials: true });
+                setValue(response?.data?.data?.value);
             } catch (err) {
-                console.error("Error while checking login status:", err.response?.data || err.message);
+                console.error("Error while checking cart status:", err.response?.data || err.message);
             }
         };
 
         checkCart();
     }, []);
-    const [OrderLoading, setOrderLoading] = React.useState(false)
 
-    async function handleOrder(){
-        setOrderLoading(true)
-        try{
-            const response = await axios.post(`${baseUrl}api/orders/place` , {} , {withCredentials : true})
-            console.log("Ordered 🎉🎉")
-            console.log(response)
+    const [userData , setUserData] = React.useState({})
 
-            navigate("/ordered_successfully")
-        }catch(err){
-            console.log("Error while ordering")
-            console.log(err)
-            setOrderLoading(false)
-        }
-        // console.log("ordered")
+    React.useEffect(()=>{
+        const getUserData = async()=>{
+            try{
 
+                const response = await axios.get(`${baseUrl}api/user/profile` , { withCredentials: true });
+
+                // console.log(response?.data?.data); 
+                setUserData(response?.data?.data)
+
+            } catch (err) {
+                console.error("Error while retreiving user data :", err.response?.data || err.message);
+                Navigate("/")
+            }
+         }
+
+         getUserData();
+
+    } , [])
+
+    async function handlePayment() {
+        const paymentOptions = {
+            key: "rzp_test_Xqd6BbFMGlNAdQ",
+            amount: price * 100, 
+            currency: "INR",
+            name: "H&M",
+            description: "Complete your purchase",
+            // image: "/your-logo.png", // Optional logo URL
+            handler: async (response) => {
+                console.log("Payment Successful", response);
+                await handleOrder(); // Proceed with order placement if payment is successful
+            },
+            prefill: {
+                name: userData?.name,
+                email: userData?.email,
+                contact: userData?.phoneNumber
+            },
+            theme: {
+                color: "#3399cc"
+            }
+        };
+
+        const razorpay = new window.Razorpay(paymentOptions);
+        razorpay.on("payment.failed", (response) => {
+            console.log("Payment Failed", response);
+            setOrderLoading(false);
+        });
+
+        // Open the Razorpay payment form
+        razorpay.open();
     }
 
+    async function handleOrder() {
+        setOrderLoading(true);
+        try {
+            const response = await axios.post(`${baseUrl}api/orders/place`, {}, { withCredentials: true });
+            console.log("Ordered 🎉🎉");
+            console.log(response);
 
-    return(
+            navigate("/ordered_successfully");
+        } catch (err) {
+            console.error("Error while ordering:", err);
+            setOrderLoading(false);
+        }
+    }
+
+    return (
         <div className="cart_info_right rightCheckout">
             <div className="proceed">
                 <div className="proceed_abv">
@@ -85,11 +134,13 @@ function CartRight({step , price}){
                         <p>Total</p>
                         <p>Rs. {value}</p>
                     </span>
-                    {step < 4 && <a href={`/checkout/${value}`}> Continue to checkout </a>}
+                    {step < 4 && <button className="disabled">Fill Details to Proceed </button>}
                     {step === 4 && 
                         <>
-                            {!OrderLoading && <button onClick={handleOrder}> Order Now </button>}
-                            {OrderLoading && <div className="ATC"><Loader/></div> }   
+                            {!orderLoading && (
+                                <button onClick={handlePayment}>Pay and Order Now</button>
+                            )}
+                            {orderLoading && <div className="ATC"><Loader/></div>}
                         </>
                     }
                 </div>
@@ -98,14 +149,18 @@ function CartRight({step , price}){
                     <div className="payment_infos">
                         {/* Payment icons */}
                     </div>
-                    <p className="disclaimer_p">Prices and delivery costs are not confirmed until you've reached the checkout.
-15 days free returns. Read more about return and refund policy.
-Customers would receive an SMS/WhatsApp notifications regarding deliveries on the registered phone number</p>
+                    <p className="disclaimer_p">
+                        Prices and delivery costs are not confirmed until you've reached the checkout.
+                        15 days free returns. Read more about return and refund policy.
+                        Customers would receive an SMS/WhatsApp notification regarding deliveries on the registered phone number.
+                    </p>
                 </div>
             </div>
         </div>
-    )
+    );
 }
+
+
 
 function MyInfo(props){
 
