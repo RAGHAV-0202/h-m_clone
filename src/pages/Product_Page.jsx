@@ -81,14 +81,14 @@ function Product() {
     React.useEffect(() => {
         const fetchProduct = async () => {
             try {
-                let response = await fetch(`https://e-commerce-backend-production-bffa.up.railway.app/api/products/data/item/${num}`);
+                let response = await fetch(`https://e-commerce-backend-production-0c3d.up.railway.app/api/products/data/item/${num}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 let item_Data = await response.json();
                 
 
-                response  = await fetch(`https://e-commerce-backend-production-bffa.up.railway.app/api/products/data/new-arrival`);
+                response  = await fetch(`https://e-commerce-backend-production-0c3d.up.railway.app/api/products/data/new-arrival`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

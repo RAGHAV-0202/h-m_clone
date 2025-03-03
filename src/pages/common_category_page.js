@@ -207,7 +207,7 @@ function MainContent() {
     const [data, setData] = React.useState([]);
 
     React.useEffect(() => {
-        fetch(`https://e-commerce-backend-production-bffa.up.railway.app/api/products/data/${category}`)
+        fetch(`https://e-commerce-backend-production-0c3d.up.railway.app/api/products/data/${category}`)
             .then(res => {
                 if (!res.ok) {
                     throw new Error("Network response was not ok");
