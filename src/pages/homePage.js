@@ -11,11 +11,7 @@ import SmolBanner from "./home_components/SmolBanner"
 import ItemCrousel from "./home_components/ItemCrousel";
 
 let apiBaseUrl = process.env.NODE_ENV === 'production' 
-<<<<<<< HEAD
   ? 'https://e-commerce-backend-production-0c3d.up.railway.app' 
-=======
-  ? 'https://e-commerce-backend-production-0c3d.up.railway.app/' 
->>>>>>> 92617fce56c32ff9bb22fb5b6cea2932bff92bdc
   : '';
 
 
